@@ -202,6 +202,81 @@ analyzed, and visualized.
 \section{A common pattern in EC research}
 \label{sec:EC_pattern}
 
+A common pattern in published evolutionary computation research is to
+compare approach $A$ and approach $B$ (perhaps two different selection
+mechanisms, or two different recombination operators) by doing a number
+of runs with each approach, often on several different ``representative''
+problems. Then a table of summary statistics is reported that (usually)
+suggests that one of the two methods had some sort of advantage over
+the other.
+
+As an example, Table~\ref{tab:example_table} (which is a subset of a 
+much larger dataset presented in \cite{Helmuth:Benchmarks}) presents
+the number of successes out of 100 independent when comparing three
+different selection mechanisms across a number of software synthesis
+problems. The results in this table (which are supported and extended
+in the full table) suggest that on this set of test problems lexicase
+selection is generally the most successful.
+
+\begin{table}
+	% table caption is above the table
+	\caption{An example of summary reseaerch results, taken from
+	\cite{Helmuth:Benchmarks}. This shows the number of successes
+    out of 100 independent runs on several software sythesis problems,
+    for each of three selection mechanisms: Tournament, Implicit Fitness Sharing (IFS), and Lexicase. \underline{Underline} indicates a statistically
+    significant advantage over both other selection methods at $p < 0.05$
+    based on a pairwise chi-square test with Holm correction.}
+	\label{tab:example_table}       % Give a unique label
+	% For LaTeX tables use
+	\begin{tabular}{llll}
+		\hline\noalign{\smallskip}
+		Problem & Tourn. & IFS & Lex. \\
+		\noalign{\smallskip}\hline\noalign{\smallskip}
+		Number IO & 68 & 72 & \underline{98} \\
+		Smallest & 75 & \underline{98} & 81 \\
+		String Lengths Backwards & 7 & 10 & \underline{66} \\
+		Replace Space With Newline & 8 & 16 & \underline{51} \\
+		Vector Average & 14 & 13 & 16 \\
+		Small Or Large & 3 & 3 & 5 \\
+		For Loop Index & 0 & 0 & 1 \\
+		String Differences & 0 & 0 & 0 \\
+		\noalign{\smallskip}\hline
+	\end{tabular}
+\end{table}
+
+This is a useful result, and clearly tells us something valuable about
+these three selection mechanisms in the tested domain. It also leaves
+so much unsaid, however, about the \emph{why} of this result. It's great
+to know that lexicase selection has a distinct and general advantage on 
+these problems, but we have no idea \emph{why} lexicase selection is
+outperforming the other two approaches. The handful of numbers in
+Table~\ref{tab:example_table} are summarizing the complex ``lives'' 
+and interactions of 100's of millions of individuals, but those numbers
+tell us nothing about how those billions of micro-events add up to this
+overall result. This is not simply a pedantic observation, as this lost 
+information also represents a lost opportunity for greater understanding. 
+
+We might, for example, see a similar table in the social sciences, 
+perhaps listing economic metrics like gross domestic product for 
+various countries. That might give us a high level view of the relationship
+of those countries economies, but no one would claim to \emph{understand}
+those relationships based on the table alone. Understanding would come
+from unpacking that small set of numbers, and trying to describe the
+mechanisms that underlie them. 
+
+Yet published research in evolutionary
+computation regularly ``ends'' with something like 
+Table~\ref{tab:example_table}, with no empirically grounded discussion 
+of the mechanisms that might lead to these summary results. The detailed
+data about the events that drive these results aren't presented or discussed,
+and likely aren't collected or even available to the researchers themselves.
+It is extremely common in evolutionary computation research to effectively
+throw away all that data as the runs progress\ldots
+\todo[inline]{finish this paragraph}
+
+\todo[inline]{Skim through GECCO papers counting number that have
+this form?}
+
 \section{Graph databases}
 \label{sec:graph_DBs}
 

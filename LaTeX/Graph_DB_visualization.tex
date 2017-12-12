@@ -150,13 +150,57 @@ understanding evolutionary processes, but he also took it as a given that
 such a record was not to be had.
 
 The incompleteness of historical record, both human and natural, continues
-to challenge scholars in a host of fields. Paleontologists work with a profoundly
+to challenge scholars in a host of fields. Paleontologists work with a 
+profoundly
 incomplete fossil record, often describing and classifying entire categories of
 organisms based a few teeth. The human historical record is no more complete,
-with numerous valuable resources lost to the ravages of time. Worse, these gaps
-are not random or symmetric. 
+with numerous valuable resources lost to the ravages of time. Worse, these 
+gaps are often neither random nor symmetric, substantially skewing our view 
+of that history. Teeth, for example, are often all we have of ancient 
+sharks and their kin because their skeletons are made of cartilage, which
+typically doesn't fossilize.
 
- and the gaps are often
+While it was impossible for Darwin to ``behold the long line of \ldots 
+[peacock] progenitors'', in evolutionary computation it is in principle possible
+to save \emph{all} the data from a run, and indeed explore all the progenitors
+of a successful individual. As described in Section~\ref{sec:EC_pattern},
+however, we rarely collect and analyze this type of data, instead only sharing
+thin statistically summaries, pale shadows of the extremely complex 
+processes that stand behind our research. 
+In this paper, however, we propose
+saving far more data tha has been common in the field, recording all the ``little'' low-level events that ultimately drive whatever large-scale trends 
+we observe in our runs.
+
+This does, however, represent a substantial increase in the amount of data
+collected, which means that we need tools and techniques to store, explore,
+analyze, and share results from that data. In recent work~\cite{graph_db_work}
+we have found graph databases (discussed in
+Section~\ref{sec:graph_DBs}) to be an effective tool for managing the 
+substantial collection of data generated during a run. 
+
+Visualizations are central to the success
+of our work with graph databases, and Section~\ref{sec:visualizations}
+describes our design of data rich 
+visualizations that allow us to effectively explore and share results such as
+complex ancestry graphs. We will then share examples of things we've learned
+from such ancestry graphs in Section~\ref{sec:learned}, and present conclusions
+and ideas for future work in Section~\ref{sec:conclusions}.
+
+\todo[inline]{I don't currently reference the Related Work section in the
+roadmap, and I feel like I probably should. Not sure where/how, though.}
+
+\section{Related work}
+\label{sec:related}
+
+We are not aware of any other work in evolutionary computation using graph
+databases to store and analyze full ancestry trees in a systematic way. That
+said, there is other work where ancestry information has been collected,
+analyzed, and visualized.
+
+\todo[inline]{Crib stuff from, e.g., the VizGEC paper in Denver.}
+
+\section{A common pattern in EC research}
+\label{sec:EC_pattern}
 
 \section{Graph databases}
 \label{sec:graph_DBs}

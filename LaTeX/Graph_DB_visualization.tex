@@ -313,14 +313,48 @@ at the very beginning of the run, a substantial dip and rise in middle of the ru
 significant and deserving of explanation. If this were a graph of any meaningful data in the social sciences, for example, these periods of
 pronounced change would almost certainly be the first things to be
 examined, and likely whole theories would be developed around these
-phenomena. While these kinds of dynamics may well be extremely 
+phenomena. While interesting dynamics such as this are probably quite
 common in evolutionary computation runs, we rarely see them, and they
-are rarely discussed or explored.
+are rarely discussed or explored. In general, unfortunately, they
+\emph{can't} be explored, because it is rarely the case that we save the
+kinds of data we'd need to be able to go back and find out what happened
+at these interesting moments.
+
+Here we propose to save detailed event-level data from a run:
+\begin{itemize}
+	\item Who was selected to be a parent
+	\item What mutation or recombination operator was applied
+	\item What child resulted
+	\item Exactly which pieces of genetic material (``genes'') were
+	modified and transferred, and in what positions
+\end{itemize}
+In principle, if we can save this data we can go back to key moments
+in runs (like the drops in diversity in 
+Figure~\ref{fig:run6lexicaserswndiversity}) and reconstruct the specific
+events that led to our initial macro-level observations.
+
+There are, however, several potential obstacles to this approach: storing, 
+processing, and understanding the data. In the early days of genetic programming, when a gigabyte
+of disk space cost thousands of dollars, saving this level of data for dozens 
+or hundreds of runs simply wasn't feasible for many researchers. The
+profound changes in the cost and capacity of storage has, however, 
+largely made this a non-issue.
+
+Simply being able to store all the data isn't sufficient, however; we need
+tools that allow us to effectively work with the data. Recent developments
+in graph databases have largely resolved this issue as well, as described
+in the next section.
+
+Lastly is the problem of understanding the data, where we have found
+visualization to be a vital technique. 
 
 \todo[inline]{Wrap up with the problems of actually collecting this data and doing something useful with it. Focus on visualization.}
 
 \section{Graph databases}
 \label{sec:graph_DBs}
+
+Graph databases\footnote{We have had success with both 
+	Neo4J and Titan DB.} store data
 
 \section{Visualizations}
 \label{sec:visualizations}

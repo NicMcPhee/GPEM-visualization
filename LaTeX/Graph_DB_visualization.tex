@@ -269,13 +269,55 @@ computation regularly ``ends'' with something like
 Table~\ref{tab:example_table}, with no empirically grounded discussion 
 of the mechanisms that might lead to these summary results. The detailed
 data about the events that drive these results aren't presented or discussed,
-and likely aren't collected or even available to the researchers themselves.
-It is extremely common in evolutionary computation research to effectively
-throw away all that data as the runs progress\ldots
-\todo[inline]{finish this paragraph}
+and likely aren't collected or even available to the researchers themselves, 
+as it is extremely common in evolutionary computation research 
+to effectively throw away all that data as the runs progress.
 
 \todo[inline]{Skim through GECCO papers counting number that have
-this form?}
+	this form?}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{Figures/rswn_diversity}
+	\caption{The diversity of error vectors over time for 100 runs each
+	on Replace Space With Newline using lexicase selection (top) and 
+    tournament selection (bottom). Taken from~\cite{diversity_gecco}.}
+	\todo[inline]{We should get a ``cleaner'' version of this with better labels.}
+	\todo[inline]{Need to get the correct citation for this.}
+	\label{fig:rswndiversity}
+\end{figure}
+
+No all research ends with just a table, however, and many published papers
+do contain data (often in the forms of visualization) that capture
+significant aspects of run dynamics. Figure~\ref{fig:rswndiversity}, for
+example, shows the change in diversity of populations over time using
+two different selection mechanisms. We can see that lexicase
+selection generally maintains a much higher level of diversity than
+than tournament selection, suggesting a possible explanation for the
+improved performance seen in Table~\ref{tab:example_table}.
+
+\begin{figure}
+	\includegraphics[width=0.7\linewidth]{Figures/run6_lexicase_rswn_diversity}
+	\caption{The diversity of error vectors over time for a single run of
+	Replace Space With Newline using lexicase selection. Taken from~\cite{diversity_gecco}.}
+	\todo[inline]{We should get a ``cleaner'' version of this with better labels.}
+	\todo[inline]{Need to get the correct citation for this.}
+	\label{fig:run6lexicaserswndiversity}
+\end{figure}
+
+Yet while Figure~\ref{fig:rswndiversity} conveys \emph{far} more data
+than Table~\ref{tab:example_table}, it still blurs potentially important
+details of individual runs. Figure~\ref{fig:run6lexicaserswndiversity} shows
+the change in diversity over a single run using lexicase selection. Here we 
+see three substantial changes in diversity: a strong drop and rapid recovery
+at the very beginning of the run, a substantial dip and rise in middle of the run, and a steep drop right at the end of the run. All of these events seem
+significant and deserving of explanation. If this were a graph of any meaningful data in the social sciences, for example, these periods of
+pronounced change would almost certainly be the first things to be
+examined, and likely whole theories would be developed around these
+phenomena. While these kinds of dynamics may well be extremely 
+common in evolutionary computation runs, we rarely see them, and they
+are rarely discussed or explored.
+
+\todo[inline]{Wrap up with the problems of actually collecting this data and doing something useful with it. Focus on visualization.}
 
 \section{Graph databases}
 \label{sec:graph_DBs}

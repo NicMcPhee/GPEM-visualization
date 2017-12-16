@@ -181,7 +181,10 @@ collected, which means that we need tools and techniques to store, explore,
 analyze, and share results from that data. In recent work~\cite{graph_db_work}
 we have found graph databases (discussed in
 Section~\ref{sec:graph_DBs}) to be an effective tool for managing the 
-substantial collection of data generated during a run. 
+substantial collection of data generated during a run. In order to understand
+the particulars of what we're storing and why, it will be necessary to provide
+a brief introduction to the the Push programming language and
+PushGP~\cite{PushGP} in Section~\ref{sec:Push}.
 
 Visualizations are central to the success
 of our work with graph databases, and Section~\ref{sec:visualizations}
@@ -261,13 +264,99 @@ computation regularly ``ends'' with something like
 Table~\ref{tab:example_table}, with no empirically grounded discussion 
 of the mechanisms that might lead to these summary results. The detailed
 data about the events that drive these results aren't presented or discussed,
-and likely aren't collected or even available to the researchers themselves.
-It is extremely common in evolutionary computation research to effectively
-throw away all that data as the runs progress\ldots
-\todo[inline]{finish this paragraph}
+and likely aren't collected or even available to the researchers themselves, 
+as it is extremely common in evolutionary computation research 
+to effectively throw away all that data as the runs progress.
 
 \todo[inline]{Skim through GECCO papers counting number that have
-this form?}
+	this form?}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{Figures/rswn_diversity}
+	\caption{The diversity of error vectors over time for 100 runs each
+	on Replace Space With Newline using lexicase selection (top) and 
+    tournament selection (bottom). Taken from~\cite{diversity_gecco}.}
+	\todo[inline]{We should get a ``cleaner'' version of this with better labels.}
+	\todo[inline]{Need to get the correct citation for this.}
+	\label{fig:rswndiversity}
+\end{figure}
+
+No all research ends with just a table, however, and many published papers
+do contain data (often in the forms of visualization) that capture
+significant aspects of run dynamics. Figure~\ref{fig:rswndiversity}, for
+example, shows the change in diversity of populations over time using
+two different selection mechanisms. We can see that lexicase
+selection generally maintains a much higher level of diversity than
+than tournament selection, suggesting a possible explanation for the
+improved performance seen in Table~\ref{tab:example_table}.
+
+\begin{figure}
+	\includegraphics[width=0.7\linewidth]{Figures/run6_lexicase_rswn_diversity}
+	\caption{The diversity of error vectors over time for a single run of
+	Replace Space With Newline using lexicase selection. Taken from~\cite{diversity_gecco}.}
+	\todo[inline]{We should get a ``cleaner'' version of this with better labels.}
+	\todo[inline]{Need to get the correct citation for this.}
+	\label{fig:run6lexicaserswndiversity}
+\end{figure}
+
+Yet while Figure~\ref{fig:rswndiversity} conveys \emph{far} more data
+than Table~\ref{tab:example_table}, it still blurs potentially important
+details of individual runs. Figure~\ref{fig:run6lexicaserswndiversity} shows
+the change in diversity over a single run using lexicase selection. Here we 
+see three substantial changes in diversity: a strong drop and rapid recovery
+at the very beginning of the run, a substantial dip and rise in middle of the run, and a steep drop right at the end of the run. All of these events seem
+significant and deserving of explanation. If this were a graph of any meaningful data in the social sciences, for example, these periods of
+pronounced change would almost certainly be the first things to be
+examined, and likely whole theories would be developed around these
+phenomena. While interesting dynamics such as this are probably quite
+common in evolutionary computation runs, we rarely see them, and they
+are rarely discussed or explored. In general, unfortunately, they
+\emph{can't} be explored, because it is rarely the case that we save the
+kinds of data we'd need to be able to go back and find out what happened
+at these interesting moments.
+
+Here we propose to save detailed event-level data from a run:
+\begin{itemize}
+	\item Who was selected to be a parent
+	\item What mutation or recombination operator was applied
+	\item What child resulted
+	\item Exactly which pieces of genetic material (``genes'') were
+	modified and transferred, and in what positions
+\end{itemize}
+In principle, if we can save this data we can go back to key moments
+in runs (like the drops in diversity in 
+Figure~\ref{fig:run6lexicaserswndiversity}) and reconstruct the specific
+events that led to our initial macro-level observations.
+
+There are, however, several potential obstacles to this approach: storing, 
+processing, and understanding the data. In the early days of genetic programming, when a gigabyte
+of disk space cost thousands of dollars, saving this level of data for dozens 
+or hundreds of runs simply wasn't feasible for many researchers. The
+profound changes in the cost and capacity of storage has, however, 
+largely made this a non-issue.
+
+\todo[inline]{I found myself talking about genes here, but we haven't
+described Push, etc. I don't really want to do that before this sections,
+as this is the key motivation, so we just need to remove any reference
+to genes and stick to individuals (which everyone presumably knows
+about)?}
+
+Simply being able to store all the data isn't sufficient, however; we need
+tools that allow us to effectively work with the data. Recent developments
+in graph databases have largely resolved this issue as well, as described
+in Section~\ref{sec:graph_DBs}. For the moment it's sufficient to understand
+that graph databases allow us to store and easily query all this data. We can,
+for example, easily determine \emph{all} of the ancestors of a given
+individual, such as a successful ``winner'' that completely solves the problem.
+Or we can filter that result by looking only at ancestors that contributed
+at least one gene to the target individual.
+
+Lastly is the problem of understanding the data, where we have found
+visualization to be a vital technique. Single runs regularly contain hundreds
+of thousands or millions of individuals, each of which typically contains
+hundreds of genes. High quality visualizations have been critical to 
+Understanding and sharing such large data sets; these will be described 
+in more detail in Section~\ref{sec:visualizations}.
 
 \section{Related work}
 \label{sec:related}
@@ -279,8 +368,18 @@ analyzed, and visualized.
 
 \todo[inline]{Crib stuff from, e.g., the VizGEC paper in Denver.}
 
+\section{PushGP}
+\label{sec:Push}
+
+\todo[inline]{Someone want to fill this in? We need to know about the basic
+linear structure of genomes, the idea of genes, and presumably a little
+about getting from Plush to Push and how Push programs work.}
+
 \section{Graph databases}
 \label{sec:graph_DBs}
+
+Graph databases\footnote{We have had success with both 
+	Neo4J and Titan DB.} store data
 
 \section{Visualizations}
 \label{sec:visualizations}

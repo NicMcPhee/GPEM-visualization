@@ -181,7 +181,10 @@ collected, which means that we need tools and techniques to store, explore,
 analyze, and share results from that data. In recent work~\cite{graph_db_work}
 we have found graph databases (discussed in
 Section~\ref{sec:graph_DBs}) to be an effective tool for managing the 
-substantial collection of data generated during a run. 
+substantial collection of data generated during a run. In order to understand
+the particulars of what we're storing and why, it will be necessary to provide
+a brief introduction to the the Push programming language and
+PushGP~\cite{PushGP} in Section~\ref{sec:Push}.
 
 Visualizations are central to the success
 of our work with graph databases, and Section~\ref{sec:visualizations}
@@ -332,15 +335,28 @@ or hundreds of runs simply wasn't feasible for many researchers. The
 profound changes in the cost and capacity of storage has, however, 
 largely made this a non-issue.
 
+\todo[inline]{I found myself talking about genes here, but we haven't
+described Push, etc. I don't really want to do that before this sections,
+as this is the key motivation, so we just need to remove any reference
+to genes and stick to individuals (which everyone presumably knows
+about)?}
+
 Simply being able to store all the data isn't sufficient, however; we need
 tools that allow us to effectively work with the data. Recent developments
 in graph databases have largely resolved this issue as well, as described
-in Section~\ref{sec:graph_DBs}.
+in Section~\ref{sec:graph_DBs}. For the moment it's sufficient to understand
+that graph databases allow us to store and easily query all this data. We can,
+for example, easily determine \emph{all} of the ancestors of a given
+individual, such as a successful ``winner'' that completely solves the problem.
+Or we can filter that result by looking only at ancestors that contributed
+at least one gene to the target individual.
 
 Lastly is the problem of understanding the data, where we have found
-visualization to be a vital technique. 
-
-\todo[inline]{Wrap up with the problems of actually collecting this data and doing something useful with it. Focus on visualization.}
+visualization to be a vital technique. Single runs regularly contain hundreds
+of thousands or millions of individuals, each of which typically contains
+hundreds of genes. High quality visualizations have been critical to 
+Understanding and sharing such large data sets; these will be described 
+in more detail in Section~\ref{sec:visualizations}.
 
 \section{Related work}
 \label{sec:related}
@@ -351,6 +367,13 @@ said, there is other work where ancestry information has been collected,
 analyzed, and visualized.
 
 \todo[inline]{Crib stuff from, e.g., the VizGEC paper in Denver.}
+
+\section{PushGP}
+\label{sec:Push}
+
+\todo[inline]{Someone want to fill this in? We need to know about the basic
+linear structure of genomes, the idea of genes, and presumably a little
+about getting from Plush to Push and how Push programs work.}
 
 \section{Graph databases}
 \label{sec:graph_DBs}

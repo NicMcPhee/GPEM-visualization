@@ -378,8 +378,15 @@ about getting from Plush to Push and how Push programs work.}
 \section{Graph databases}
 \label{sec:graph_DBs}
 
-Graph databases\footnote{We have had success with both 
-	Neo4J and Titan DB.} store data
+Instead of storing data in tables like relational databases, graph 
+databases\footnote{We have had success with both Neo4J and Titan DB.} 
+store data as nodes and edges in a graph, with the ability to store additional
+data on both nodes and edges much like a document-oriented database.
+This is a natural fit for storing and analyzing ancestry data from evolutionary
+computation runs, as a key type of data we would like to store and explore
+are parent-child relationships, along with information like where genes came
+from, all of which have straightforward representations as edges between
+nodes.
 
 \section{Visualizations}
 \label{sec:visualizations}
